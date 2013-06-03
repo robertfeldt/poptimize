@@ -1,4 +1,3 @@
-poptimize
-=========
+# Poptimize
 
-Parallel/distributed optimization framework for Elixir
+** TODO: Add description **
