@@ -45,5 +45,22 @@ defmodule OptimalityTest do
     assert pareto_compare([-2.0, 1.0], [-2.1, 0.9]) == 1
 
     assert pareto_compare([1.0, 2.0], [0.0, 2.0])   == 1
+  end
+
+  test "pareto optimal comparison works when no vector is pareto optimal" do 
+    assert pareto_compare([10.0], [10.0])           == 0
+    assert pareto_compare([1.0, 0.0], [0.0, 1.0])   == 0
+  end
+
+  test "epsilon pareto optimal comparison" do 
+    assert pareto_compare([1.0], [2.0],   0.01)  == -1
+    assert pareto_compare([1.0], [2.0],   0.99)  == -1
+
+    assert pareto_compare([20.0], [10.0], 9.99)  == 1
+    assert pareto_compare([20.0], [10.0], 1.99)  == 1
+
+    assert pareto_compare([20.0], [10.0], 10.00) == 0
+    assert pareto_compare([1.0], [1.2],   0.2)   == 0
+    assert pareto_compare([-1.0], [-2.0], 1.0)   == 0
   end 
 end
